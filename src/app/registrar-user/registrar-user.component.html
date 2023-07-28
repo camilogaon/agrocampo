@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Registro</h5>
+                    <form>
+                        <div class="form-group">
+                            <label for="nombre_cliente">Nombre:</label>
+                            <input type="text" class="form-control"  #nombreCliente>
+                        </div>
+                        <div class="form-group">
+                            <label for="cedula_cliente">Cédula:</label>
+                            <input type="text" class="form-control"  #cedulaCliente>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono_cliente">Teléfono:</label>
+                            <input type="text" class="form-control"  #telefonoCliente>
+                        </div>
+                        <div class="form-group">
+                            <label for="email_cliente">Correo electrónico:</label>
+                            <input type="text" class="form-control"  #emailCliente>
+                        </div>
+                        <div class="form-group">
+                            <label for="contraseña_cliente">Contraseña:</label>
+                            <input type="text" class="form-control"  #contrasenaCliente>
+                        </div>
+                        <button type="button" class="btn btn-success mt-3" (click)="addcliente(nombreCliente.value, cedulaCliente.value, telefonoCliente.value, emailCliente.value, contrasenaCliente.value)">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

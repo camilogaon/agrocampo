@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Carrito de compras</h1>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Nombre Producto</th>
+                <th>Descripcion producto</th>
+                <th>Cantidad producto</th>
+            </thead>
+            <tbody *ngIf="listaproductos.length">
+                <tr *ngFor="let listaproducto of listaproductos">
+                    <td>{{ listaproducto.id }}</td>
+                    <td>{{ listaproducto.nombre_producto}}</td>
+                    <td>{{ listaproducto.descripcion_producto}}</td>
+                    <td>{{ listaproducto.cantidad_producto}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteArticle(listaproducto.id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
