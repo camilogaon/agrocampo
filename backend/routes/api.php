@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use App\Http\Resources\ArticleResource;
 use App\Models\Cliente;
 use App\Http\Controllers\ClienteController;
@@ -74,6 +75,21 @@ Route::put('/listaproducto/{id}', [ListaproductosController::class, 'update']);
 
 Route::delete('/listaproducto/{id}', [ListaproductosController::class, 'destroy']);
 
+
+Route::group([
+
+    'middleware' => 'api',
+
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class,'login']);
+    Route::post('signup', [AuthController::class,'signup']);
+    Route::post('logout', [AuthController::class,'logout']);
+    Route::post('refresh', [AuthController::class,'refresh']);
+    Route::post('me', [AuthController::class,'me']);
+
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

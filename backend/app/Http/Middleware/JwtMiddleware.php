@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Cors
+class JwtMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,6 @@ class Cors
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // header('Access-Control-Allow-Origin : *');
-        // header('Access-Control-Allow-Headers : Content-type,X-Auth-Token,Authirization,Origin');
         return $next($request);
     }
 }
