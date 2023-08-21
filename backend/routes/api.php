@@ -5,15 +5,19 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Resources\ArticleResource;
 use App\Models\Cliente;
 use App\Http\Controllers\ClienteController;
 use App\Http\Resources\ClienteResource;
 use App\Models\Listaproductos;
 use App\Http\Controllers\ListaproductosController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Resources\CategoriaResource;
 use App\Http\Resources\ListaproductoResource;
-
-
+use App\Http\Resources\ProductoResource;
+use App\Models\Categoria;
+use App\Models\producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +94,49 @@ Route::group([
     Route::post('me', [AuthController::class,'me']);
 
 });
+
+
+
+Route::get('/categorias', function (){
+    return CategoriaResource::collection(Categoria::all());
+});
+
+Route::get('/categoria/{id_categoria}', function ($id_categoria){
+    return new CategoriaResource(Categoria::findOrFail($id_categoria));
+});
+
+Route::post('/categorias', [CategoriaController::class, 'store']);
+
+Route::put('/categoria/{id_categoria}', [CategoriaController::class, 'update']);
+
+Route::delete('/categoria/{id_categoria}', [CategoriaController::class, 'destroy']);
+
+
+
+
+
+Route::get('/productos', function (){
+    return ProductoResource::collection(producto::all());
+});
+
+Route::get('/producto/{id_producto}', function ($id_categoria){
+    return new ProductoResource(producto::findOrFail($id_categoria));
+});
+
+Route::post('/productos', [ProductoController::class, 'store']);
+
+
+Route::put('/producto/{id_producto}', [ProductoController::class, 'update']);
+
+Route::delete('/producto/{id_producto}', [ProductoController::class, 'destroy']);
+
+
+
+
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
