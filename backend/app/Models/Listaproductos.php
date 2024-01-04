@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listaproductos extends Model
 {
+    protected $primaryKey = 'id_carrito';
+    public $incrementing = false;
+    public $timestamps = false;
     use HasFactory;
     protected $fillable = [
-        'nombre_producto', 'descripcion_producto', 'cantidad_producto'
+        'id_carrito','nombre_producto', 'descripcion_producto', 'precio_producto', 'id_producto'
     ];
 
     protected $table = 'listaproductos';

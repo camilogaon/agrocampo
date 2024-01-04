@@ -20,6 +20,7 @@ class ProductoResource extends JsonResource
             'descripcion_producto' => $this->descripcion_producto,
             'precio_producto' => $this->precio_producto,
             'categoria_id_categoria' => $this->categoria_id_categoria,
+            'img_producto'=>$this->img_producto
         ];
     }
 }

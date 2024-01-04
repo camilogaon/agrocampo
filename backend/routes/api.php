@@ -9,15 +9,21 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Resources\ArticleResource;
 use App\Models\Cliente;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ContactController;
 use App\Http\Resources\ClienteResource;
 use App\Models\Listaproductos;
 use App\Http\Controllers\ListaproductosController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VentasController;
 use App\Http\Resources\CategoriaResource;
+use App\Http\Resources\ContactResource;
 use App\Http\Resources\ListaproductoResource;
 use App\Http\Resources\ProductoResource;
+use App\Http\Resources\VentasResource;
 use App\Models\Categoria;
+use App\Models\contact;
 use App\Models\producto;
+use App\Models\Ventas;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,15 +75,38 @@ Route::get('/listaproductos', function (){
     return ListaproductoResource::collection(Listaproductos::all());
 });
 
-Route::get('/listaproducto/{id}', function ($id){
-    return new ListaproductoResource(Listaproductos::findOrFail($id));
+Route::get('/listaproducto/{id_carrito}', function ($id_carrito){
+    return new ListaproductoResource(Listaproductos::findOrFail($id_carrito));
 });
 
 Route::post('/listaproductos', [ListaproductosController::class, 'store']);
 
-Route::put('/listaproducto/{id}', [ListaproductosController::class, 'update']);
+Route::put('/listaproducto/{id_carrito}', [ListaproductosController::class, 'update']);
 
-Route::delete('/listaproducto/{id}', [ListaproductosController::class, 'destroy']);
+Route::delete('/listaproducto/{id_carrito}', [ListaproductosController::class, 'destroy']);
+
+Route::delete('/listaproductos', [ListaproductosController::class, 'destroyTabla']);
+
+Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos']);
+
+
+
+Route::get('/contacts', function (){
+    return ContactResource::collection(contact::all());
+});
+
+Route::get('/contact/{cedula_contact}', function ($cedula_contact){
+    return new ContactResource(contact::findOrFail($cedula_contact));
+});
+
+Route::post('/contacts', [ContactController::class, 'store']);
+
+Route::put('/contact/{cedula_contact}', [ContactController::class, 'update']);
+
+Route::delete('/contact/{cedula_contact}', [ContactController::class, 'destroy']);
+
+
+
 
 
 Route::group([
@@ -119,8 +148,8 @@ Route::get('/productos', function (){
     return ProductoResource::collection(producto::all());
 });
 
-Route::get('/producto/{id_producto}', function ($id_categoria){
-    return new ProductoResource(producto::findOrFail($id_categoria));
+Route::get('/producto/{id_producto}', function ($id_producto){
+    return new ProductoResource(producto::findOrFail($id_producto));
 });
 
 Route::post('/productos', [ProductoController::class, 'store']);
@@ -132,6 +161,22 @@ Route::delete('/producto/{id_producto}', [ProductoController::class, 'destroy'])
 
 
 
+
+
+
+Route::get('/ventas', function (){
+    return VentasResource::collection(Ventas::all());
+});
+
+Route::get('/venta/{id}', function ($id_ventas){
+    return new VentasResource(Ventas::findOrFail($id_ventas));
+});
+
+Route::post('/ventas', [VentasController::class, 'store']);
+
+Route::put('/venta/{id}', [VentasController::class, 'update']);
+
+Route::delete('/venta/{id}', [VentasController::class, 'destroy']);
 
 
 

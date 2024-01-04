@@ -24,34 +24,31 @@ class ProductoController extends Controller
     }
 
 
-    public function file(Request $request){
-        $producto = new producto();
-        if($request->hasFile('img_producto')){
-            $completeFileName = $request->file('img_producto')->getClientOriginalName();
-            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
-            $extenshion = $request->file('img_producto')->getClientOriginalExtension();
-            $compPic = str_replace(' ', ' ', $fileNameOnly).'-'.rand().'_'.time(). '.' .$extenshion;
-            $path = $request->file('img_producto')->storeAs('public/posts', $compPic);
-            $producto -> img_producto =$compPic;
-            return producto::create($request->all());  
-            dd($path);
-        }
-        if($producto->save()){
-            return ['status' => true, 'message' => 'Post Saved Succesfully'];
-        }else{
-            return ['status' => false, 'message' => 'Something Went Wrong'];
-        }
-
-
-       
-    }
+    // public function file(Request $request){
+    //     $producto = new producto();
+    //     if($request->hasFile('img_producto')){
+    //         $completeFileName = $request->file('img_producto')->getClientOriginalName();
+    //         $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+    //         $extenshion = $request->file('img_producto')->getClientOriginalExtension();
+    //         $compPic = str_replace(' ', ' ', $fileNameOnly).'-'.rand().'_'.time(). '.' .$extenshion;
+    //         $path = $request->file('img_producto')->storeAs('public/posts', $compPic);
+    //         $producto -> img_producto =$compPic;
+    //         // return producto::create($request->all());  
+    //         dd($compPic);
+    //     }
+    //     if($producto->save()){
+    //         return ['status' => true, 'message' => 'Post Saved Succesfully'];
+    //     }else{
+    //         return ['status' => false, 'message' => 'Something Went Wrong'];
+    //     }  
+    // }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id_producto)
     {
-        return producto::find($id);
+        return producto::find($id_producto);
     }
 
     /**
