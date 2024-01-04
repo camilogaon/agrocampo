@@ -1,0 +1,41 @@
+<app-secciones-admin></app-secciones-admin>
+
+<div class="container mt-5">
+    <h1>Productos</h1>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+          <th>Categoria</th>
+        </thead>
+        <tbody *ngIf="productos.length ">
+          <tr *ngFor="let producto of productos ">
+            <td>{{ producto.id_producto }}</td>
+            <td>{{ producto.nombre_producto }}</td>
+            <td>{{ producto.descripcion_producto}}</td>
+            <td>{{ producto.precio_producto}}</td>
+            <td>{{ producto.categoria_id_categoria}}</td>
+            <td>
+              <button class="btn btn-info" routerLink="/editproducto/{{producto.id_producto}}">Editar</button>&nbsp;<button
+                class="btn btn-danger" (click)="deleteProducto(producto.id_producto)" > Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botón para crear nuevo artículo -->
+    <div>
+      <button class="btn btn-primary mx-3" routerLink="/add-producto">Añadir Nuevo Producto</button>
+      <button class="btn btn-success mx-3" (click)="exportToExcel()">Exportar Archivo Excel</button>
+
+    </div>
+    <div class="container mt-5">
+      <div class="alert alert-success" *ngIf="showAlert" role="alert">
+        Archivo Exportado Exitosamente
+    </div>
+    </div>
+
+    

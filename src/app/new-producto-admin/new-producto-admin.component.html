@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <h1 class="text-success">Agregar Nueva Producto</h1>
+    <form [formGroup]="formUser" (ngSubmit)="procesar()">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" name="id" placeholder="Ingrese el ID" #idProducto>
+            <div class="alert alert-danger" [hidden]="id.valid || id.pristine">
+                Id obligatorio
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" #nombreProducto>
+            <div class="alert alert-danger" [hidden]="nombre.valid || nombre.pristine">
+                Nombre obligatorio
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese la descripción" #descripcionProducto>
+            <div class="alert alert-danger" [hidden]="descripcion.valid || descripcion.pristine">
+                Descripcion obligatoria
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" formControlName="precio" class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese el precio" #precioProducto>
+            <div class="alert alert-danger" [hidden]="precio.valid || precio.pristine">
+                Precio obligatorio
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select formControlName="categoria" class="form-control" id="categoria" name="categoria" #categoriaProducto>
+              <option value="">Selecciona una categoría</option> <!-- Opción por defecto -->
+              <option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">{{ categoria.nombre_categoria }}</option>
+            </select>
+            <div class="alert alert-danger" [hidden]="categoria.valid || categoria.pristine">
+              Categoría obligatoria
+            </div>
+          </div>
+        <div class="mb-3">
+            <label for="link" class="form-label">Link Imagen</label>
+            <input type="text" formControlName="link" class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese el Link" #linkProducto>
+            <div class="alert alert-danger" [hidden]="link.valid || link.pristine">
+                Link obligatorio
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" [disabled]="formUser.invalid" (click)="add(idProducto.value, nombreProducto.value, descripcionProducto.value, precioProducto.value, categoriaProducto.value, linkProducto.value);idProducto.value='';nombreProducto.value='';descripcionProducto.value='';precioProducto.value='';categoriaProducto.value='';linkProducto.value=''">Agregar Producto </button>
+        
+    </form>
+</div>

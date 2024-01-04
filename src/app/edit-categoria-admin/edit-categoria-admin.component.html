@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="mb-3">
+        <label for="id_categoria" class="form-label">ID</label>
+        <input type="text" class="form-control"  [(ngModel)]="categoria.id_categoria" #idCategoria>
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="categoria.nombre_categoria" #nombreCategoria>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input class="form-control" id="descripcion" name="descripcion" rows="3"  [(ngModel)]="categoria.descripcion_categoria" #descripcionCategoria>
+    </div>
+    <button type="button" class="btn btn-success"(click)="update(idCategoria.value, nombreCategoria.value,descripcionCategoria.value); ">Actualizar</button>
+</div>

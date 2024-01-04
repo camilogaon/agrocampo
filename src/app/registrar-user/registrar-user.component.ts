@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { JarwisService } from '../services/jarwis.service';
+import { TokenService } from '../services/token.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-registrar-user',
@@ -9,33 +13,44 @@ import { Router } from '@angular/router';
 })
 export class RegistrarUserComponent {
 
-  constructor(private clienteService:ClienteService,private router:Router){}
 
-  clientes:any;
+  public form={
+    id:null,
+    email:null,
+    name:null,
+    password:null,
+    password_confirmation:null
+  };
 
-  ngOnInit():void{
-   
+
+  public error:any = {};
+
+  
+
+
+  constructor(private Jarwis:JarwisService,private Token:TokenService, private router:Router, private Auth:AuthService){}
+
+  onSubmit(){
+    this.Jarwis.signup(this.form).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    );
   }
 
-  showArticles(){
-    this.clientes =this.clienteService.listClientes().subscribe(cliente=>{
-      this.clientes = cliente;
-      console.log(this.clientes);
-    });
+  handleResponse(data:any){
+    this.Token.handle(data.access_token);
+    this.Auth.changeAuthStatus(true);
+    this.router.navigateByUrl('/dashboard');
   }
 
-  addcliente(nombreCliente:string, cedulaCliente:string, telefonoCliente:string, emailCliente:string, contrasenaCliente:string){
-    this.clientes={
-      'nombre_cliente': nombreCliente,
-      'cedula_cliente': cedulaCliente,
-      'telefono_cliente': telefonoCliente,
-      'email_cliente': emailCliente,
-      'contraseña_cliente': contrasenaCliente,
-    }
-    this.clienteService.addCliente(this.clientes as any). subscribe(cliente=>{
-      this.clientes=cliente
-    });
-    console.log(this.clientes);
+  
 
-  }
+  handleError(error:any){
+    this.error =error.error.errors;
+}
+
+
+ngOnInit(){
+  
+}
 }

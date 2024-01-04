@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="mb-3">
+        <label for="id_categoria" class="form-label">ID</label>
+        <input type="text" class="form-control"  [(ngModel)]="producto.id_producto" #idProducto>
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombre_producto" #nombreProducto>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input class="form-control" id="descripcion" name="descripcion" rows="3"  [(ngModel)]="producto.descripcion_producto" #descripcionProducto>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Precio</label>
+        <input class="form-control" id="descripcion" name="descripcion" rows="3"  [(ngModel)]="producto.precio_producto" #precioProducto>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Categoria</label>
+        <input class="form-control" id="descripcion" name="descripcion" rows="3"  [(ngModel)]="producto.categoria_producto" #categoriaProducto>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Link Imagen</label>
+        <input class="form-control" id="descripcion" name="descripcion" rows="3"  [(ngModel)]="producto.img_producto" #linkProducto>
+    </div>
+    <button type="button" class="btn btn-success"(click)="update(idProducto.value, nombreProducto.value,descripcionProducto.value,precioProducto.value,categoriaProducto.value); ">Actualizar</button>
+</div>

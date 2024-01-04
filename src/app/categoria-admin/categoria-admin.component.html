@@ -1,0 +1,38 @@
+
+<app-secciones-admin></app-secciones-admin>
+
+<div class="container mt-5">
+    <h1>Categorias</h1>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+        </thead>
+        <tbody *ngIf="categorias.length">
+          <tr *ngFor="let categoria of categorias">
+            <td>{{ categoria.id_categoria }}</td>
+            <td>{{ categoria.nombre_categoria }}</td>
+            <td>{{ categoria.descripcion_categoria}}</td>
+            <td>
+              <button class="btn btn-info" routerLink="/editcategoria/{{categoria.id_categoria}}">Editar</button>&nbsp;<button
+                class="btn btn-danger" (click)="deleteCategoria(categoria.id_categoria)"> Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botón para crear nuevo artículo -->
+    <div>
+      <button class="btn btn-primary mx-3" routerLink="/add-categoria">Añadir Nueva Categoria</button>
+      <button class="btn btn-success mx-3" (click)=" exportToExcel()">Exportar Archivo Excel</button> 
+    </div>
+    <div class="container mt-5">
+      <div class="alert alert-success" *ngIf="showAlert" role="alert">
+        Archivo Exportado Exitosamente
+    </div>
+    </div>
+
+
+    

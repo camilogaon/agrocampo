@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivAdminService } from './services/activ-admin.service';
+import { NavbarVisibilityServiceService } from './services/navbar-visibility-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+
+  constructor(public navbarVisibilityService: NavbarVisibilityServiceService) {}
 }

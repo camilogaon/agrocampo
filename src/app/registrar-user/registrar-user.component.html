@@ -1,34 +1,68 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Registro</h5>
-                    <form>
-                        <div class="form-group">
-                            <label for="nombre_cliente">Nombre:</label>
-                            <input type="text" class="form-control"  #nombreCliente>
-                        </div>
-                        <div class="form-group">
-                            <label for="cedula_cliente">Cédula:</label>
-                            <input type="text" class="form-control"  #cedulaCliente>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono_cliente">Teléfono:</label>
-                            <input type="text" class="form-control"  #telefonoCliente>
-                        </div>
-                        <div class="form-group">
-                            <label for="email_cliente">Correo electrónico:</label>
-                            <input type="text" class="form-control"  #emailCliente>
-                        </div>
-                        <div class="form-group">
-                            <label for="contraseña_cliente">Contraseña:</label>
-                            <input type="text" class="form-control"  #contrasenaCliente>
-                        </div>
-                        <button type="button" class="btn btn-success mt-3" (click)="addcliente(nombreCliente.value, cedulaCliente.value, telefonoCliente.value, emailCliente.value, contrasenaCliente.value)">Registrarse</button>
-                    </form>
+
+<div class="mt-4 col-8 offset-2">
+    <div class="card">
+        <div class="card-header">registrarse</div>
+        <div class="card-body">
+           <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+            <div class="form-group row">
+                <label for="inputname3" class="col-sm-2 col-form-label">Cedula</label>
+                <div class="col-sm-10">
+                  <input type="text" name="id" class="form-control" id="id" [(ngModel)]="form.id" required placeholder="Cedula">
+                  <div class="alert alert-danger" [hidden]="!error.id">
+                    {{error.id}}
+                </div>
                 </div>
             </div>
+
+            <div class="form-group row mt-3">
+                <label for="inputname3" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" class="form-control" id="inputname3" [(ngModel)]="form.name" required placeholder="Name">
+                  <div class="alert alert-danger" [hidden]="!error.name">
+                    {{error.name}}
+                </div>
+                </div>
+            </div>
+
+            <div class="form-group row  mt-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" name="email" class="form-control" id="inputEmail3" [(ngModel)]="form.email" required placeholder="Email" >
+                    <div class="alert alert-danger" [hidden]="error && !error.email">
+                        {{error.email}}
+                    </div>
+                </div>
+            </div>
+
+            
+
+              <div class="form-group row mt-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="form.password" required>
+                    </div>
+              </div>
+
+
+              <div class="form-group row mt-3">
+                <label for="inputPassword_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="password_confirmation" class="form-control" id="inputPassword_confirmation" placeholder="Password" [(ngModel)]="form.password_confirmation" required>
+                    </div>
+                    <div class="alert alert-danger" [hidden]="!error.password">
+                        {{error.password}}
+                    </div>
+              </div>
+            
+
+              <div class="form-group row mt-3">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">registrarse</button>
+                    <div class="col-sm-7 offset-2 d-flex justify-content-end"><label >Ya estas registrado? <a routerLink="/login-user">Iniciar sesion</a></label></div>
+                </div>
+              </div>
+            </form> 
         </div>
     </div>
 </div>

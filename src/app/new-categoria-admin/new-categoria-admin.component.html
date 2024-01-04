@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h1>Agregar Nueva Categoría</h1>
+    <form [formGroup]="formUser" (ngSubmit)="procesar()">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" name="id" placeholder="Ingrese el ID" #idCategoria>
+            <div class="alert alert-danger" [hidden]="id.valid || id.pristine">
+                Id obligatorio
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" #nombreCategoria>
+            <div class="alert alert-danger" [hidden]="nombre.valid || nombre.pristine">
+                Nombre obligatorio
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input formControlName="descripcion" class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese la descripción" #descripcionCategoria>
+            <div class="alert alert-danger" [hidden]="descripcion.valid || descripcion.pristine">
+                Descripcion obligatorio
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" [disabled]="formUser.invalid" (click)="add(idCategoria.value, nombreCategoria.value, descripcionCategoria.value);idCategoria.value='';nombreCategoria.value='';descripcionCategoria.value=''">Agregar Categoría</button>
+    </form>
+</div>

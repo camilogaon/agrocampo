@@ -1,23 +1,42 @@
 <div class="container">
-    <h1>Carrito de compras</h1>
+  </div>
+      <div class="alert alert-success" *ngIf="showAlert" role="alert">
+        ¡Producto agregado al carrito!
+    <h1>Carrito de comprass</h1><br><br>
     <div>
         <table class="table table-striped">
             <thead>
                 <th>Id</th>
+                <th>Id Producto</th>
                 <th>Nombre Producto</th>
                 <th>Descripcion producto</th>
-                <th>Cantidad producto</th>
+                <th>Precio producto</th>
             </thead>
             <tbody *ngIf="listaproductos.length">
                 <tr *ngFor="let listaproducto of listaproductos">
-                    <td>{{ listaproducto.id }}</td>
+                    <td>{{ listaproducto.id_carrito }}</td>
+                    <td>{{ listaproducto.id_producto }}</td>
                     <td>{{ listaproducto.nombre_producto}}</td>
                     <td>{{ listaproducto.descripcion_producto}}</td>
-                    <td>{{ listaproducto.cantidad_producto}}</td>
-                    <td><button class="btn btn-danger" (click)="deleteArticle(listaproducto.id)">Delete</button></td>
+                    <td>{{ listaproducto.precio_producto}}</td>
+                    <p [style.display]="'none'">ID: {{ users.sub }}</p>
+                    <td><button class="btn btn-danger" (click)="deleteArticle(listaproducto.id_carrito)"><i class="bi bi-trash"></i></button></td>
+                    <td><button type="button" class="btn btn-success" (click)="add(users.sub,listaproducto.id_producto,listaproducto.id_carrito)">Comprar  <i class="bi bi-cash-coin ml"></i></button></td>
+                    
                 </tr>
+                <br>
+                <button class="btn btn-success" (click)=" exportToExcel()">Exportar Archivo Excel</button> 
             </tbody>
+            
         </table>
-    </div>
+           </div>
 </div>
+
+
+
+
+
+
+
+
 

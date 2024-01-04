@@ -1,3 +1,5 @@
+
+
 <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -25,44 +27,87 @@
     </button>
   </div>
 
+
   <div class="container mt-5">
-    <div class="row">
-        <!-- Tarjeta 1 -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="assets/productouno.jpg" class="card-img-top" alt="Imagen 1">
-                <div class="card-body">
-                    <h5 class="card-title">Panzer</h5>
-                    <p class="card-text">Presentación: 1 lt</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          ¿Cuál es la mejor manera de controlar las plagas de manera natural en mis cultivos?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Una forma efectiva de controlar plagas de manera natural es implementar la rotación de cultivos, utilizar depredadores naturales como mariquitas y aves, así como aplicar insecticidas orgánicos como neem o aceite de ajo para mantener a raya las plagas sin dañar el medio ambiente.
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="assets/productodos.jpg" class="card-img-top" alt="Imagen 2">
-                <div class="card-body">
-                    <h5 class="card-title">Triple18</h5>
-                    <p class="card-text">Presentación: 600 gr</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="assets/productotres.jpg" class="card-img-top" alt="Imagen 3">
-                <div class="card-body">
-                    <h5 class="card-title">FertInvesa</h5>
-                    <p class="card-text">Presentación: 1 lt</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          ¿Cómo puedo mejorar la calidad del suelo de mi campo de cultivo?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Para mejorar la calidad del suelo, es esencial practicar la fertilización adecuada mediante la incorporación de abonos orgánicos como compost y estiércol. Además, la labranza mínima y la cobertura vegetal ayudan a retener la humedad y los nutrientes en el suelo, mejorando su estructura y salud a largo plazo.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          ¿Qué prácticas son recomendables para maximizar el rendimiento de mis cultivos?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Para optimizar el rendimiento de tus cultivos, es importante llevar a cabo un plan de riego adecuado según las necesidades de cada planta, aplicar fertilizantes equilibrados para asegurar una nutrición óptima y realizar un monitoreo constante para identificar y abordar cualquier problema en etapas tempranas, lo que permitirá tomar medidas preventivas y correctivas oportunamente.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
+ <!-- Sección de contacto -->
+ <section class="container mt-5">
+  <h2>Contacto</h2>
+  <p>Póngase en contacto con nosotros para obtener más información sobre nuestros productos.</p>
+  <form [formGroup]="formUser" (ngSubmit)="procesar()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="Ingrese su nombre" #nombre_contact>
+      <div class="alert alert-danger" [hidden]="nombre.valid || nombre.pristine">
+        Nombre obligatorio
+    </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="nombre">Cedula</label>
+      <input type="number" formControlName="cedula" class="form-control" id="nombre" placeholder="Ingrese su nombre" #cedula_contact>
+      <div class="alert alert-danger" [hidden]="cedula.valid || cedula.pristine">
+        Cedula obligatorio
+    </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="telefono">Telefono</label>
+      <input type="number" formControlName="telefono" class="form-control" id="nombre" placeholder="Ingrese su telefono" #telefono_contact>
+      <div class="alert alert-danger" [hidden]="telefono.valid || telefono.pristine">
+        Telefono obligatorio
+    </div>
+    </div>
+    <br>
+    
+    <div class="form-group">
+      <label for="mensaje">Mensaje</label>
+      <textarea class="form-control" formControlName="mensaje" id="mensaje" rows="4" placeholder="Escriba su mensaje aquí" #mensaje></textarea>
+      
+    </div>
+    <br>
+    <button type="button" class="btn btn-success" [disabled]="formUser.invalid"
+    (click)="add(cedula_contact.value,nombre_contact.value, telefono_contact.value,
+    mensaje.value);cedula_contact.value=''; nombre_contact.value=''; telefono_contact.value='';
+    mensaje.value=''">Enviar Mensaje</button>
+  </form>
+</section>
